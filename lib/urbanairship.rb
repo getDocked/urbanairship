@@ -144,7 +144,10 @@ module Urbanairship
     end
 
     def http_client
-      Net::HTTP.new("go.urbanairship.com", 443).tap{|http| http.use_ssl = true}
+      Net::HTTP.new("go.urbanairship.com", 443).tap do |http|
+         http.use_ssl = true
+         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
     end
 
     def parse_register_options(hash = {})
